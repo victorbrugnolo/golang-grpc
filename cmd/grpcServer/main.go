@@ -8,6 +8,8 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"net"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
 func main() {
@@ -26,7 +28,7 @@ func main() {
 	pb.RegisterCategoryServiceServer(grpcServer, categoryService)
 	reflection.Register(grpcServer)
 
-	lis, err := net.Listen("tcp", "50051")
+	lis, err := net.Listen("tcp", ":50051")
 
 	if err != nil {
 		panic(err)
